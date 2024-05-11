@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-
 namespace CheckersGame
 {
     public partial class PrototypeCheckerGame : Form
     {
         const int MapSize = 8;
-        const int CageSize = 50;
-
+        const int CheckSize = 50;
         int currentPlayer;
-
         List<Button> simpleSteps = new List<Button>();
-
+        Button[,] buttons = new Button[MapSize, MapSize];
         int countEatSteps = 0;
         Button prevButton;
         Button pressedButton;
@@ -24,19 +21,129 @@ namespace CheckersGame
 
         int[,] map = new int[MapSize, MapSize];
 
-        Button[,] buttons = new Button[MapSize, MapSize];
+        Image UpFigure = Properties.Resources.white.GetThumbnailImage(CheckSize - 10, CheckSize - 10, null, IntPtr.Zero);
+        Image DownFigure = Properties.Resources.black.GetThumbnailImage(CheckSize - 10, CheckSize - 10, null, IntPtr.Zero);
 
-        Image whiteFigure;
-        Image blackFigure;
+        private CheckerColorManager colorManager;
 
         public PrototypeCheckerGame()
         {
             InitializeComponent();
 
-            whiteFigure = Properties.Resources.w.GetThumbnailImage(CageSize - 10, CageSize - 10, null, IntPtr.Zero);
-            blackFigure = Properties.Resources.b.GetThumbnailImage(CageSize - 10, CageSize - 10, null, IntPtr.Zero);
+            Image whiteDefault = Properties.Resources.white.GetThumbnailImage(CheckSize - 10, CheckSize - 10, null, IntPtr.Zero);
+            Image blackDefault = Properties.Resources.black.GetThumbnailImage(CheckSize - 10, CheckSize - 10, null, IntPtr.Zero);
+
+            colorManager = new CheckerColorManager(whiteDefault, blackDefault);
+
+            UPColorCB.SelectedIndexChanged += ColorCB_SelectedIndexChanged;
+            DOWNColorCB.SelectedIndexChanged += ColorCB_SelectedIndexChanged;
+
+            this.Controls.Add(CurrentPlayerLabel);
+
+
+            CurrentPlayerLabel.Text = "Now move Player 1";
+            currentPlayer = 1;
+            UpdateCurrentPlayerLabel();
 
             Initialization();
+        }
+
+        // Сhecker methods
+        private void ColorCB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox cb = sender as ComboBox;
+
+            Image selectedImage = GetSelectedImage(cb.SelectedItem.ToString());
+
+            if (selectedImage != null)
+            {
+                UpdateColorManager(cb, selectedImage);
+                UpdateButtonImages(cb);
+            }
+        }
+        private Image GetSelectedImage(string color)
+        {
+            switch (color)
+            {
+                case "White":
+                    return Properties.Resources.white.GetThumbnailImage(CheckSize - 10, CheckSize - 10, null, IntPtr.Zero);
+                case "Black":
+                    return Properties.Resources.black.GetThumbnailImage(CheckSize - 10, CheckSize - 10, null, IntPtr.Zero);
+                case "Blue":
+                    return Properties.Resources.blue.GetThumbnailImage(CheckSize - 10, CheckSize - 10, null, IntPtr.Zero);
+                case "Yellow":
+                    return Properties.Resources.yellow.GetThumbnailImage(CheckSize - 10, CheckSize - 10, null, IntPtr.Zero);
+                default:
+                    return null;
+            }
+        }
+        private void UpdateColorManager(ComboBox cb, Image selectedImage)
+        {
+            if (cb == UPColorCB)
+            {
+                colorManager.WhiteFigure = selectedImage;
+            }
+            else if (cb == DOWNColorCB)
+            {
+                colorManager.BlackFigure = selectedImage;
+            }
+        }
+        private void UpdateButtonImages(ComboBox cb)
+        {
+            for (int i = 0; i < MapSize; i++)
+            {
+                for (int j = 0; j < MapSize; j++)
+                {
+                    int player = map[i, j];
+                    if ((player == 1 && cb == UPColorCB) || (player == 2 && cb == DOWNColorCB))
+                    {
+                        colorManager.UpdateButtonImage(buttons[i, j], player);
+                    }
+                }
+            }
+        }
+        public Color GetPrevButtonColor(Button prevButton)
+        {
+            if ((prevButton.Location.Y / CheckSize % 2) != 0)
+            {
+                if ((prevButton.Location.X / CheckSize % 2) == 0)
+                {
+                    return Color.Gray;
+                }
+            }
+            if ((prevButton.Location.Y / CheckSize) % 2 == 0)
+            {
+                if ((prevButton.Location.X / CheckSize) % 2 != 0)
+                {
+                    return Color.Gray;
+                }
+            }
+            return Color.White;
+        }
+
+        // Mechanics of counting the number of remaining checkers
+        public int CountCheckers(int player)
+        {
+            int count = 0;
+            for (int i = 0; i < MapSize; i++)
+            {
+                for (int j = 0; j < MapSize; j++)
+                {
+                    if (map[i, j] == player)
+                    {
+                        count++;
+                    }
+                }
+            }
+            return count;
+        }
+        public void UpdateCheckersCountLabels()
+        {
+            int whiteCheckersCount = CountCheckers(1);
+            int blackCheckersCount = CountCheckers(2);
+
+            UpperLabel.Text = $"P1: {whiteCheckersCount}/12";
+            LowerLabel.Text = $"P2: {blackCheckersCount}/12";
         }
 
         // Methods for rendering
@@ -47,6 +154,7 @@ namespace CheckersGame
             prevButton = null;
 
             map = new int[MapSize, MapSize] {
+
                 { 0,1,0,1,0,1,0,1 },
                 { 1,0,1,0,1,0,1,0 },
                 { 0,1,0,1,0,1,0,1 },
@@ -56,7 +164,6 @@ namespace CheckersGame
                 { 0,2,0,2,0,2,0,2 },
                 { 2,0,2,0,2,0,2,0 }
             };
-
             CreateMap();
         }
         public void ResetGame()
@@ -74,28 +181,36 @@ namespace CheckersGame
                         player2 = true;
                 }
             }
+
             if (!player1 || !player2)
             {
-                this.Controls.Clear();
+                ClearGameBoard();
                 Initialization();
+            }
+        }
+        private void ClearGameBoard()
+        {
+            for (int i = 0; i < MapSize; i++)
+            {
+                for (int j = 0; j < MapSize; j++)
+                {
+                    this.Controls.Remove(buttons[i, j]);
+                }
             }
         }
         public void CreateMap()
         {
-            this.Width = (MapSize + 1) * CageSize;
-            this.Height = (MapSize + 1) * CageSize;
-
             for (int i = 0; i < MapSize; i++)
             {
                 for (int j = 0; j < MapSize; j++)
                 {
                     Button button = new Button();
-                    button.Location = new Point(j * CageSize, i * CageSize);
-                    button.Size = new Size(CageSize, CageSize);
+                    button.Location = new Point(j * CheckSize, i * CheckSize);
+                    button.Size = new Size(CheckSize, CheckSize);
                     button.Click += new EventHandler(OnFigurePress);
                     if (map[i, j] == 1)
-                        button.Image = whiteFigure;
-                    else if (map[i, j] == 2) button.Image = blackFigure;
+                        button.Image = UpFigure;
+                    else if (map[i, j] == 2) button.Image = DownFigure;
 
                     button.BackColor = GetPrevButtonColor(button);
                     button.ForeColor = Color.Red;
@@ -106,30 +221,17 @@ namespace CheckersGame
                 }
             }
         }
-        public void SwitchPlayer()
+        private void SwitchPlayer()
         {
             currentPlayer = currentPlayer == 1 ? 2 : 1;
             ResetGame();
+            UpdateCurrentPlayerLabel();
+            CurrentPlayerLabel.ForeColor = currentPlayer == 1 ? Color.Red : Color.Blue;
         }
-        public Color GetPrevButtonColor(Button prevButton)
+        private void UpdateCurrentPlayerLabel()
         {
-            if ((prevButton.Location.Y / CageSize % 2) != 0)
-            {
-                if ((prevButton.Location.X / CageSize % 2) == 0)
-                {
-                    return Color.Gray;
-                }
-            }
-            if ((prevButton.Location.Y / CageSize) % 2 == 0)
-            {
-                if ((prevButton.Location.X / CageSize) % 2 != 0)
-                {
-                    return Color.Gray;
-                }
-            }
-            return Color.White;
+            CurrentPlayerLabel.Text = $"Now move Player {currentPlayer}";
         }
-
 
         // Handler of the event of pressing on the figure
         public void OnFigurePress(object sender, EventArgs e)
@@ -153,7 +255,7 @@ namespace CheckersGame
         private bool IsValidPress()
         {
             return (pressedButton != null &&
-                    map[pressedButton.Location.Y / CageSize, pressedButton.Location.X / CageSize] == currentPlayer);
+                    map[pressedButton.Location.Y / CheckSize, pressedButton.Location.X / CheckSize] == currentPlayer);
         }
         private void HandleValidPress()
         {
@@ -163,9 +265,9 @@ namespace CheckersGame
             pressedButton.Enabled = true;
             countEatSteps = 0;
             if (pressedButton.Text == "👑")
-                ShowStepsWay(pressedButton.Location.Y / CageSize, pressedButton.Location.X / CageSize, false);
+                ShowStepsWay(pressedButton.Location.Y / CheckSize, pressedButton.Location.X / CheckSize, false);
             else
-                ShowStepsWay(pressedButton.Location.Y / CageSize, pressedButton.Location.X / CageSize);
+                ShowStepsWay(pressedButton.Location.Y / CheckSize, pressedButton.Location.X / CheckSize);
 
             if (isMoving)
             {
@@ -184,7 +286,7 @@ namespace CheckersGame
             if (isMoving)
             {
                 isContinue = false;
-                if (Math.Abs(pressedButton.Location.X / CageSize - prevButton.Location.X / CageSize) > 1)
+                if (Math.Abs(pressedButton.Location.X / CheckSize - prevButton.Location.X / CheckSize) > 1)
                 {
                     isContinue = true;
                     DeleteFallenChekers(pressedButton, prevButton);
@@ -194,9 +296,9 @@ namespace CheckersGame
         }
         private void MoveButtons()
         {
-            int temp = map[pressedButton.Location.Y / CageSize, pressedButton.Location.X / CageSize];
-            map[pressedButton.Location.Y / CageSize, pressedButton.Location.X / CageSize] = map[prevButton.Location.Y / CageSize, prevButton.Location.X / CageSize];
-            map[prevButton.Location.Y / CageSize, prevButton.Location.X / CageSize] = temp;
+            int temp = map[pressedButton.Location.Y / CheckSize, pressedButton.Location.X / CheckSize];
+            map[pressedButton.Location.Y / CheckSize, pressedButton.Location.X / CheckSize] = map[prevButton.Location.Y / CheckSize, prevButton.Location.X / CheckSize];
+            map[prevButton.Location.Y / CheckSize, prevButton.Location.X / CheckSize] = temp;
             pressedButton.Image = prevButton.Image;
             prevButton.Image = null;
             pressedButton.Text = prevButton.Text;
@@ -204,9 +306,12 @@ namespace CheckersGame
             DamkaModActivated(pressedButton);
             countEatSteps = 0;
             isMoving = false;
+            CheckForWin();
             CloseSteps();
             DeactivateAllButtons();
             HandleContinuation();
+            UpdateCheckersCountLabels();
+
         }
         private void HandleContinuation()
         {
@@ -318,8 +423,8 @@ namespace CheckersGame
         }
         public void ShowProceduralDead(int i,int j,bool isOneStep = true)
         {
-            int dirX = i - pressedButton.Location.Y / CageSize;
-            int dirY = j - pressedButton.Location.X / CageSize;
+            int dirX = i - pressedButton.Location.Y / CheckSize;
+            int dirY = j - pressedButton.Location.X / CheckSize;
             dirX = dirX < 0 ? -1 : 1;
             dirY = dirY < 0 ? -1 : 1;
             int il = i;
@@ -469,7 +574,7 @@ namespace CheckersGame
             return true;
         }
 
-        // Field status
+        // Other activities
         public void ActivateAllButtons()
         {
             for (int i = 0; i < MapSize; i++)
@@ -490,18 +595,16 @@ namespace CheckersGame
                 }
             }
         }
-
-        // Other actions
         public void DeleteFallenChekers(Button endButton, Button startButton)
         {
-            int count = Math.Abs(endButton.Location.Y / CageSize - startButton.Location.Y / CageSize);
-            int startIndexX = endButton.Location.Y / CageSize - startButton.Location.Y / CageSize;
-            int startIndexY = endButton.Location.X / CageSize - startButton.Location.X / CageSize;
+            int count = Math.Abs(endButton.Location.Y / CheckSize - startButton.Location.Y / CheckSize);
+            int startIndexX = endButton.Location.Y / CheckSize - startButton.Location.Y / CheckSize;
+            int startIndexY = endButton.Location.X / CheckSize - startButton.Location.X / CheckSize;
             startIndexX = startIndexX < 0 ? -1 : 1;
             startIndexY = startIndexY < 0 ? -1 : 1;
             int currCount = 0;
-            int i = startButton.Location.Y / CageSize + startIndexX;
-            int j = startButton.Location.X / CageSize + startIndexY;
+            int i = startButton.Location.Y / CheckSize + startIndexX;
+            int j = startButton.Location.X / CheckSize + startIndexY;
             while (currCount < count - 1)
             {
                 map[i, j] = 0;
@@ -511,6 +614,7 @@ namespace CheckersGame
                 j += startIndexY;
                 currCount++;
             }
+            UpdateCheckersCountLabels();
 
         }
         public bool DeterminePath(int ti, int tj)
@@ -538,15 +642,36 @@ namespace CheckersGame
         }
         public void DamkaModActivated(Button button)
         {
-            if (map[button.Location.Y / CageSize, button.Location.X / CageSize] == 1 && button.Location.Y / CageSize == MapSize - 1)
+            if (map[button.Location.Y / CheckSize, button.Location.X / CheckSize] == 1 && button.Location.Y / CheckSize == MapSize - 1)
             {
                 button.Text = "👑";
 
             }
-            if (map[button.Location.Y / CageSize, button.Location.X / CageSize] == 2 && button.Location.Y / CageSize == 0)
+            if (map[button.Location.Y / CheckSize, button.Location.X / CheckSize] == 2 && button.Location.Y / CheckSize == 0)
             {
                 button.Text = "👑";
             }
+        }
+
+        // Congratulations to Players
+        private void CheckForWin()
+        {
+            int whiteCheckersCount = CountCheckers(1);
+            int blackCheckersCount = CountCheckers(2);
+
+            if (whiteCheckersCount == 0)
+            {
+                ShowGameOverMessage("Congratulations! Player 2 has won!");
+            }
+            else if (blackCheckersCount == 0)
+            {
+                ShowGameOverMessage("Congratulations! Player 1 has won!");
+            }
+        }
+        private void ShowGameOverMessage(string message)
+        {
+            MessageBox.Show(message, "Win", MessageBoxButtons.OK);
+            return;
         }
     }
 }

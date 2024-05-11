@@ -8,13 +8,13 @@ C:\Users\Вадим\Desktop\CheckersGame-master\CheckersGame\obj\Debug\CheckersG
 C:\Users\Вадим\Desktop\CheckersGame-master\CheckersGame\obj\Debug\CheckersGame.csproj.CoreCompileInputs.cache
 C:\Users\Вадим\Desktop\CheckersGame-master\CheckersGame\obj\Debug\CheckersGame.exe
 C:\Users\Вадим\Desktop\CheckersGame-master\CheckersGame\obj\Debug\CheckersGame.pdb
-C:\Users\Вадим\Desktop\U.W.F\University\KPZ\DKOOP\Mod1-Легкая оптимизация кода\CheckersGame\obj\Debug\CheckersGame.csproj.AssemblyReference.cache
-C:\Users\Вадим\Desktop\U.W.F\University\KPZ\DKOOP\Mod1-Легкая оптимизация кода\CheckersGame\obj\Debug\CheckersGame.PrototypeCheckerGame.resources
-C:\Users\Вадим\Desktop\U.W.F\University\KPZ\DKOOP\Mod1-Легкая оптимизация кода\CheckersGame\obj\Debug\CheckersGame.Properties.Resources.resources
-C:\Users\Вадим\Desktop\U.W.F\University\KPZ\DKOOP\Mod1-Легкая оптимизация кода\CheckersGame\obj\Debug\CheckersGame.csproj.GenerateResource.cache
-C:\Users\Вадим\Desktop\U.W.F\University\KPZ\DKOOP\Mod1-Легкая оптимизация кода\CheckersGame\obj\Debug\CheckersGame.csproj.CoreCompileInputs.cache
-C:\Users\Вадим\Desktop\U.W.F\University\KPZ\DKOOP\Mod1-Легкая оптимизация кода\CheckersGame\obj\Debug\CheckersGame.exe
-C:\Users\Вадим\Desktop\U.W.F\University\KPZ\DKOOP\Mod1-Легкая оптимизация кода\CheckersGame\obj\Debug\CheckersGame.pdb
-C:\Users\Вадим\Desktop\U.W.F\University\KPZ\DKOOP\Mod1-Легкая оптимизация кода\CheckersGame\bin\Debug\CheckersGame.exe.config
-C:\Users\Вадим\Desktop\U.W.F\University\KPZ\DKOOP\Mod1-Легкая оптимизация кода\CheckersGame\bin\Debug\CheckersGame.exe
-C:\Users\Вадим\Desktop\U.W.F\University\KPZ\DKOOP\Mod1-Легкая оптимизация кода\CheckersGame\bin\Debug\CheckersGame.pdb
+C:\Users\Вадим\Desktop\U.W.F\University\KPZ\KPZ-LAB-06\CheckersGame\bin\Debug\CheckersGame.exe.config
+C:\Users\Вадим\Desktop\U.W.F\University\KPZ\KPZ-LAB-06\CheckersGame\bin\Debug\CheckersGame.exe
+C:\Users\Вадим\Desktop\U.W.F\University\KPZ\KPZ-LAB-06\CheckersGame\bin\Debug\CheckersGame.pdb
+C:\Users\Вадим\Desktop\U.W.F\University\KPZ\KPZ-LAB-06\CheckersGame\obj\Debug\CheckersGame.csproj.AssemblyReference.cache
+C:\Users\Вадим\Desktop\U.W.F\University\KPZ\KPZ-LAB-06\CheckersGame\obj\Debug\CheckersGame.PrototypeCheckerGame.resources
+C:\Users\Вадим\Desktop\U.W.F\University\KPZ\KPZ-LAB-06\CheckersGame\obj\Debug\CheckersGame.Properties.Resources.resources
+C:\Users\Вадим\Desktop\U.W.F\University\KPZ\KPZ-LAB-06\CheckersGame\obj\Debug\CheckersGame.csproj.GenerateResource.cache
+C:\Users\Вадим\Desktop\U.W.F\University\KPZ\KPZ-LAB-06\CheckersGame\obj\Debug\CheckersGame.csproj.CoreCompileInputs.cache
+C:\Users\Вадим\Desktop\U.W.F\University\KPZ\KPZ-LAB-06\CheckersGame\obj\Debug\CheckersGame.exe
+C:\Users\Вадим\Desktop\U.W.F\University\KPZ\KPZ-LAB-06\CheckersGame\obj\Debug\CheckersGame.pdb
