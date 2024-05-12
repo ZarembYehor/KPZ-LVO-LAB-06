@@ -17,38 +17,38 @@ To run the application locally, follow these steps:
 
 **1) Observer**
 
-A) [ColorCB_SelectedIndexChanged](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L52): This method observes changes to the shape color selection combo boxes. When the user selects a new color, the SelectedIndexChanged event is called and this method handles the color selection.
+A) [ColorCB_SelectedIndexChanged](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L66): This method observes changes to the shape color selection combo boxes. When the user selects a new color, the SelectedIndexChanged event is called and this method handles the color selection.
 
-B) [OnFigurePress](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L237): This method observes the event of clicking a shape button on the playfield. When the user clicks the button, the Click event is called, and this method handles the pressing of the figure.
+B) [OnFigurePress](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L256): This method observes the event of clicking a shape button on the playfield. When the user clicks the button, the Click event is called, and this method handles the pressing of the figure.
 
 
 **2) Factory Method**
 
-[GetSelectedImage](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L64): This method is used to create images for different colors of shapes depending on the user-selected value in the combo boxes. It acts as a factory method that creates and returns an image depending on the selected color.
+[GetSelectedImage](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L78): This method is used to create images for different colors of shapes depending on the user-selected value in the combo boxes. It acts as a factory method that creates and returns an image depending on the selected color.
 
 
 **3) Strategy**
-The [ColorCB_SelectedIndexChanged](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L52), [UpdateColorManager](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L80), and UpdateButtonImages methods are used to select the colors of shapes depending on the user-selected value in the combo boxes. These methods allow you to easily add new shape colors without changing the underlying code.
+The [ColorCB_SelectedIndexChanged](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L66), [UpdateColorManager](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L99), and UpdateButtonImages methods are used to select the colors of shapes depending on the user-selected value in the combo boxes. These methods allow you to easily add new shape colors without changing the underlying code.
 
 
 
 **4) Template Method**
-Method [Initialization](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L150): This method defines the basic algorithm for initializing the game. It uses the template method because it defines a general initialization algorithm, and specific steps (such as creating a playfield) can be implemented in child classes or overridden if necessary.
+Method [Initialization](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L169): This method defines the basic algorithm for initializing the game. It uses the template method because it defines a general initialization algorithm, and specific steps (such as creating a playfield) can be implemented in child classes or overridden if necessary.
 
 
 
 **Programming Principles**
 **1) DRY (Don't Repeat Yourself)**
-Methods such as [ShowDiagonalWayUpRight](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L348), [ShowDiagonalWayUpLeft](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L367), [ShowDiagonalWayDownLeft](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L386), and [ShowDiagonalWayDownRight](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L405) demonstrate this principle by encapsulating similar logic for mapping diagonal paths into separate methods and thus reducing redundancy.
+Methods such as [ShowDiagonalWayUpRight](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L367), [ShowDiagonalWayUpLeft](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L386), [ShowDiagonalWayDownLeft](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L405), and [ShowDiagonalWayDownRight](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L424) demonstrate this principle by encapsulating similar logic for mapping diagonal paths into separate methods and thus reducing redundancy.
 
 
 **2) KISS (Keep It Simple, Stupid)**
-The logic in methods such as [HandleValidPress](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L260) and [HandleInvalidPress](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L284) is simple and straightforward, focusing on the current task without excessive complexity.
+The logic in methods such as [HandleValidPress](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L279) and [HandleInvalidPress](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L303) is simple and straightforward, focusing on the current task without excessive complexity.
 
 **3) SOLID:**
 
 **A) SRP**
-Methods are designed with sole responsibility, such as [ShowDiagonalWayUpRight](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L348), which is responsible for displaying the diagonal path for a particular direction.
+Methods are designed with sole responsibility, such as [ShowDiagonalWayUpRight](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L367), which is responsible for displaying the diagonal path for a particular direction.
 
 **B) OCP**
 The code is open to extension but closed to modification, allowing for future additions without significantly altering existing code.
@@ -58,7 +58,7 @@ The code depends on abstractions rather than concrete implementations, which pro
 
 
 **4) Composition Over Inheritance**
-The use of composition can be seen in how the [CheckerColorManager](KPZ-LAB-06/CheckersGame/CheckerColorManager.cs#L348) class is used to manage checker colors, providing flexibility and encapsulation.
+The use of composition can be seen in how the [CheckerColorManager](KPZ-LAB-06/CheckersGame/CheckerColorManager.cs#L6) class is used to manage checker colors, providing flexibility and encapsulation.
 
 
 
@@ -66,19 +66,19 @@ The use of composition can be seen in how the [CheckerColorManager](KPZ-LAB-06/C
 
 **1) Extract Method:** Separating a section of code into a separate method to improve readability and reuse.
 
-**Example:**[ShowDiagonalWayUpRight](KPZ-LAB-06/CheckersGame/CheckerColorManager.cs#L348) 
+**Example:**[ShowDiagonalWayUpRight](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L367) 
 
 **2)Extract Variable:** Creating a variable to temporarily store a value, improve clarity, and reduce code duplication.
-**Example:**[ShowDiagonalWayUpRight](KPZ-LAB-06/CheckersGame/CheckerColorManager.cs#L348) 
+**Example:**[ShowDiagonalWayUpRight](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L367) 
 
 **3)Remove Duplicate Code:** Getting rid of repetitive sections of code by placing them in separate methods or classes.
 
-**Example:**[GetSelectedImage](KPZ-LAB-06/CheckersGame/CheckerColorManager.cs#L64) 
+**Example:**[GetSelectedImage](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L78) 
 **4)Improve Variable and Method Names:** Selecting informative and clear names for variables and methods to improve code readability.
-**Example:**[DamkaModActivated](KPZ-LAB-06/CheckersGame/CheckerColorManager.cs#L643) 
+**Example:**[DamkaModActivated](KPZ-LAB-06/CheckersGame/PrototypeCheckerGame.cs#L662) 
 
 **5)Split Method:** Splitting a large method into smaller methods to improve code structure and readability.
-**Example:**[ShowDiagonalWayUpRight](KPZ-LAB-06/CheckersGame/CheckerColorManager.cs#L334) 
+**Example:**[ShowDiagonalWayUpRight](KPZ-LAB-06/CheckersGame/CheckerColorManager.cs#L367) 
 
 
 
