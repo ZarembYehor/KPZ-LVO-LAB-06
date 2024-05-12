@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CheckersGame.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -29,6 +30,8 @@ namespace CheckersGame
         public PrototypeCheckerGame()
         {
             InitializeComponent();
+
+            ButtonExtensions.CheckSize = CheckSize;
 
             Image whiteDefault = GetThumbnailImage("white", CheckSize);
             Image blackDefault = GetThumbnailImage("black", CheckSize);
@@ -123,16 +126,16 @@ namespace CheckersGame
         }
         public Color GetPrevButtonColor(Button prevButton)
         {
-            if ((prevButton.Location.Y / CheckSize % 2) != 0)
+            if ((prevButton.GetBoardY() % 2) != 0)
             {
-                if ((prevButton.Location.X / CheckSize % 2) == 0)
+                if ((prevButton.GetBoardX() % 2) == 0)
                 {
                     return Color.Gray;
                 }
             }
-            if ((prevButton.Location.Y / CheckSize) % 2 == 0)
+            if (prevButton.GetBoardY() % 2 == 0)
             {
-                if ((prevButton.Location.X / CheckSize) % 2 != 0)
+                if (prevButton.GetBoardX() % 2 != 0)
                 {
                     return Color.Gray;
                 }
@@ -274,7 +277,7 @@ namespace CheckersGame
         private bool IsValidPress()
         {
             return (pressedButton != null &&
-                    map[pressedButton.Location.Y / CheckSize, pressedButton.Location.X / CheckSize] == currentPlayer);
+                    map[pressedButton.GetBoardY(), pressedButton.GetBoardX()] == currentPlayer);
         }
         private void HandleValidPress()
         {
@@ -284,9 +287,9 @@ namespace CheckersGame
             pressedButton.Enabled = true;
             countEatSteps = 0;
             if (pressedButton.Text == "👑")
-                ShowStepsWay(pressedButton.Location.Y / CheckSize, pressedButton.Location.X / CheckSize, false);
+                ShowStepsWay(pressedButton.GetBoardY(), pressedButton.GetBoardX(), false);
             else
-                ShowStepsWay(pressedButton.Location.Y / CheckSize, pressedButton.Location.X / CheckSize);
+                ShowStepsWay(pressedButton.GetBoardY(), pressedButton.GetBoardX());
 
             if (isMoving)
             {
@@ -305,7 +308,7 @@ namespace CheckersGame
             if (isMoving)
             {
                 isContinue = false;
-                if (Math.Abs(pressedButton.Location.X / CheckSize - prevButton.Location.X / CheckSize) > 1)
+                if (Math.Abs(pressedButton.GetBoardX() - prevButton.GetBoardX()) > 1)
                 {
                     isContinue = true;
                     DeleteFallenChekers(pressedButton, prevButton);
@@ -315,9 +318,9 @@ namespace CheckersGame
         }
         private void MoveButtons()
         {
-            int temp = map[pressedButton.Location.Y / CheckSize, pressedButton.Location.X / CheckSize];
-            map[pressedButton.Location.Y / CheckSize, pressedButton.Location.X / CheckSize] = map[prevButton.Location.Y / CheckSize, prevButton.Location.X / CheckSize];
-            map[prevButton.Location.Y / CheckSize, prevButton.Location.X / CheckSize] = temp;
+            int temp = map[pressedButton.GetBoardY(), pressedButton.GetBoardX()];
+            map[pressedButton.GetBoardY(), pressedButton.GetBoardX()] = map[prevButton.GetBoardY(), prevButton.GetBoardX()];
+            map[prevButton.GetBoardY(), prevButton.GetBoardX()] = temp;
             pressedButton.Image = prevButton.Image;
             prevButton.Image = null;
             pressedButton.Text = prevButton.Text;
@@ -442,8 +445,8 @@ namespace CheckersGame
         }
         public void ShowProceduralDead(int i,int j,bool isOneStep = true)
         {
-            int dirX = i - pressedButton.Location.Y / CheckSize;
-            int dirY = j - pressedButton.Location.X / CheckSize;
+            int dirX = i - pressedButton.GetBoardY();
+            int dirY = j - pressedButton.GetBoardX();
             dirX = dirX < 0 ? -1 : 1;
             dirY = dirY < 0 ? -1 : 1;
             int il = i;
@@ -616,14 +619,14 @@ namespace CheckersGame
         }
         public void DeleteFallenChekers(Button endButton, Button startButton)
         {
-            int count = Math.Abs(endButton.Location.Y / CheckSize - startButton.Location.Y / CheckSize);
-            int startIndexX = endButton.Location.Y / CheckSize - startButton.Location.Y / CheckSize;
-            int startIndexY = endButton.Location.X / CheckSize - startButton.Location.X / CheckSize;
+            int count = Math.Abs(endButton.GetBoardY() - startButton.GetBoardY());
+            int startIndexX = endButton.GetBoardY() - startButton.GetBoardY();
+            int startIndexY = endButton.GetBoardX() - startButton.GetBoardX();
             startIndexX = startIndexX < 0 ? -1 : 1;
             startIndexY = startIndexY < 0 ? -1 : 1;
             int currCount = 0;
-            int i = startButton.Location.Y / CheckSize + startIndexX;
-            int j = startButton.Location.X / CheckSize + startIndexY;
+            int i = startButton.GetBoardY() + startIndexX;
+            int j = startButton.GetBoardX() + startIndexY;
             while (currCount < count - 1)
             {
                 map[i, j] = 0;
@@ -661,12 +664,12 @@ namespace CheckersGame
         }
         public void DamkaModActivated(Button button)
         {
-            if (map[button.Location.Y / CheckSize, button.Location.X / CheckSize] == 1 && button.Location.Y / CheckSize == MapSize - 1)
+            if (map[button.GetBoardY(), button.GetBoardX()] == 1 && button.GetBoardY() == MapSize - 1)
             {
                 button.Text = "👑";
 
             }
-            if (map[button.Location.Y / CheckSize, button.Location.X / CheckSize] == 2 && button.Location.Y / CheckSize == 0)
+            if (map[button.GetBoardY(), button.GetBoardX()] == 2 && button.GetBoardY() == 0)
             {
                 button.Text = "👑";
             }
