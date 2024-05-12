@@ -18,3 +18,14 @@ C:\Users\Вадим\Desktop\U.W.F\University\KPZ\KPZ-LAB-06\CheckersGame\obj\Deb
 C:\Users\Вадим\Desktop\U.W.F\University\KPZ\KPZ-LAB-06\CheckersGame\obj\Debug\CheckersGame.csproj.CoreCompileInputs.cache
 C:\Users\Вадим\Desktop\U.W.F\University\KPZ\KPZ-LAB-06\CheckersGame\obj\Debug\CheckersGame.exe
 C:\Users\Вадим\Desktop\U.W.F\University\KPZ\KPZ-LAB-06\CheckersGame\obj\Debug\CheckersGame.pdb
+C:\Users\Maks\Desktop\лаби\4 семестр\Конструювання програмного забезпечення (2022-2023)\code rewiew\KPZ-LVO-LAB-06\KPZ-LAB-06\CheckersGame\bin\Debug\CheckersGame.exe.config
+C:\Users\Maks\Desktop\лаби\4 семестр\Конструювання програмного забезпечення (2022-2023)\code rewiew\KPZ-LVO-LAB-06\KPZ-LAB-06\CheckersGame\bin\Debug\CheckersGame.exe
+C:\Users\Maks\Desktop\лаби\4 семестр\Конструювання програмного забезпечення (2022-2023)\code rewiew\KPZ-LVO-LAB-06\KPZ-LAB-06\CheckersGame\bin\Debug\CheckersGame.pdb
+C:\Users\Maks\Desktop\лаби\4 семестр\Конструювання програмного забезпечення (2022-2023)\code rewiew\KPZ-LVO-LAB-06\KPZ-LAB-06\CheckersGame\obj\Debug\CheckersGame.csproj.AssemblyReference.cache
+C:\Users\Maks\Desktop\лаби\4 семестр\Конструювання програмного забезпечення (2022-2023)\code rewiew\KPZ-LVO-LAB-06\KPZ-LAB-06\CheckersGame\obj\Debug\CheckersGame.csproj.SuggestedBindingRedirects.cache
+C:\Users\Maks\Desktop\лаби\4 семестр\Конструювання програмного забезпечення (2022-2023)\code rewiew\KPZ-LVO-LAB-06\KPZ-LAB-06\CheckersGame\obj\Debug\CheckersGame.PrototypeCheckerGame.resources
+C:\Users\Maks\Desktop\лаби\4 семестр\Конструювання програмного забезпечення (2022-2023)\code rewiew\KPZ-LVO-LAB-06\KPZ-LAB-06\CheckersGame\obj\Debug\CheckersGame.Properties.Resources.resources
+C:\Users\Maks\Desktop\лаби\4 семестр\Конструювання програмного забезпечення (2022-2023)\code rewiew\KPZ-LVO-LAB-06\KPZ-LAB-06\CheckersGame\obj\Debug\CheckersGame.csproj.GenerateResource.cache
+C:\Users\Maks\Desktop\лаби\4 семестр\Конструювання програмного забезпечення (2022-2023)\code rewiew\KPZ-LVO-LAB-06\KPZ-LAB-06\CheckersGame\obj\Debug\CheckersGame.csproj.CoreCompileInputs.cache
+C:\Users\Maks\Desktop\лаби\4 семестр\Конструювання програмного забезпечення (2022-2023)\code rewiew\KPZ-LVO-LAB-06\KPZ-LAB-06\CheckersGame\obj\Debug\CheckersGame.exe
+C:\Users\Maks\Desktop\лаби\4 семестр\Конструювання програмного забезпечення (2022-2023)\code rewiew\KPZ-LVO-LAB-06\KPZ-LAB-06\CheckersGame\obj\Debug\CheckersGame.pdb

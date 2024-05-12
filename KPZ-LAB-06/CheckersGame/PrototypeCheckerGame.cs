@@ -21,17 +21,17 @@ namespace CheckersGame
 
         int[,] map = new int[MapSize, MapSize];
 
-        Image UpFigure = Properties.Resources.white.GetThumbnailImage(CheckSize - 10, CheckSize - 10, null, IntPtr.Zero);
-        Image DownFigure = Properties.Resources.black.GetThumbnailImage(CheckSize - 10, CheckSize - 10, null, IntPtr.Zero);
+        Image UpFigure = GetThumbnailImage("white", CheckSize);
+        Image DownFigure = GetThumbnailImage("black", CheckSize);
 
         private CheckerColorManager colorManager;
-
+    
         public PrototypeCheckerGame()
         {
             InitializeComponent();
 
-            Image whiteDefault = Properties.Resources.white.GetThumbnailImage(CheckSize - 10, CheckSize - 10, null, IntPtr.Zero);
-            Image blackDefault = Properties.Resources.black.GetThumbnailImage(CheckSize - 10, CheckSize - 10, null, IntPtr.Zero);
+            Image whiteDefault = GetThumbnailImage("white", CheckSize);
+            Image blackDefault = GetThumbnailImage("black", CheckSize);
 
             colorManager = new CheckerColorManager(whiteDefault, blackDefault);
 
@@ -47,7 +47,21 @@ namespace CheckersGame
 
             Initialization();
         }
+        public static Image GetThumbnailImage(string color, int checkSize)
+        {
+            Image image = null;
 
+            if (color.Equals("white", StringComparison.OrdinalIgnoreCase))
+            {
+                image = Properties.Resources.white.GetThumbnailImage(checkSize - 10, checkSize - 10, null, IntPtr.Zero);
+            }
+            else if (color.Equals("black", StringComparison.OrdinalIgnoreCase))
+            {
+                image = Properties.Resources.black.GetThumbnailImage(checkSize - 10, checkSize - 10, null, IntPtr.Zero);
+            }
+
+            return image;
+        }
         // Сhecker methods
         private void ColorCB_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -63,20 +77,25 @@ namespace CheckersGame
         }
         private Image GetSelectedImage(string color)
         {
-            switch (color)
+            Dictionary<string, Bitmap> colorImages = new Dictionary<string, Bitmap>
+    {
+        { "White", Properties.Resources.white },
+        { "Black", Properties.Resources.black },
+        { "Blue", Properties.Resources.blue },
+        { "Yellow", Properties.Resources.yellow }
+    };
+
+            if (colorImages.ContainsKey(color))
             {
-                case "White":
-                    return Properties.Resources.white.GetThumbnailImage(CheckSize - 10, CheckSize - 10, null, IntPtr.Zero);
-                case "Black":
-                    return Properties.Resources.black.GetThumbnailImage(CheckSize - 10, CheckSize - 10, null, IntPtr.Zero);
-                case "Blue":
-                    return Properties.Resources.blue.GetThumbnailImage(CheckSize - 10, CheckSize - 10, null, IntPtr.Zero);
-                case "Yellow":
-                    return Properties.Resources.yellow.GetThumbnailImage(CheckSize - 10, CheckSize - 10, null, IntPtr.Zero);
-                default:
-                    return null;
+                Bitmap selectedImage = colorImages[color];
+                return selectedImage.GetThumbnailImage(CheckSize - 10, CheckSize - 10, null, IntPtr.Zero);
+            }
+            else
+            {
+                return null;
             }
         }
+
         private void UpdateColorManager(ComboBox cb, Image selectedImage)
         {
             if (cb == UPColorCB)
