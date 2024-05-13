@@ -8,7 +8,7 @@ To run the application locally, follow these steps:
 3) Run the main application file.
 
 **This project has this:**
-- game against Man
+- game against human
 - white starts
 - there is a choice of colors for the teams
 - there is a scoreboard of how many chips are left
