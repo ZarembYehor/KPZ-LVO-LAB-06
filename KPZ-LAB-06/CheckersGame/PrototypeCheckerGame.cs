@@ -50,6 +50,44 @@ namespace CheckersGame
 
             Initialization();
         }
+
+        #region Callbacks
+        // Сhecker methods
+        private void ColorCB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox cb = sender as ComboBox;
+
+            Image selectedImage = GetSelectedImage(cb.SelectedItem.ToString());
+
+            if (selectedImage != null)
+            {
+                UpdateColorManager(cb, selectedImage);
+                UpdateButtonImages(cb);
+            }
+        }
+
+        // Handler of the event of pressing on the figure
+        public void OnFigurePress(object sender, EventArgs e)
+        {
+            if (prevButton != null)
+                prevButton.BackColor = GetPrevButtonColor(prevButton);
+
+            pressedButton = sender as Button;
+
+            if (IsValidPress())
+            {
+                HandleValidPress();
+            }
+            else
+            {
+                HandleInvalidPress();
+            }
+
+            prevButton = pressedButton;
+        }
+
+        #endregion
+
         public static Image GetThumbnailImage(string color, int checkSize)
         {
             Image image = null;
@@ -65,19 +103,7 @@ namespace CheckersGame
 
             return image;
         }
-        // Сhecker methods
-        private void ColorCB_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ComboBox cb = sender as ComboBox;
-
-            Image selectedImage = GetSelectedImage(cb.SelectedItem.ToString());
-
-            if (selectedImage != null)
-            {
-                UpdateColorManager(cb, selectedImage);
-                UpdateButtonImages(cb);
-            }
-        }
+        
         private Image GetSelectedImage(string color)
         {
             Dictionary<string, Bitmap> colorImages = new Dictionary<string, Bitmap>
@@ -255,25 +281,7 @@ namespace CheckersGame
             CurrentPlayerLabel.Text = $"Now move Player {currentPlayer}";
         }
 
-        // Handler of the event of pressing on the figure
-        public void OnFigurePress(object sender, EventArgs e)
-        {
-            if (prevButton != null)
-                prevButton.BackColor = GetPrevButtonColor(prevButton);
-
-            pressedButton = sender as Button;
-
-            if (IsValidPress())
-            {
-                HandleValidPress();
-            }
-            else
-            {
-                HandleInvalidPress();
-            }
-
-            prevButton = pressedButton;
-        }
+        
         private bool IsValidPress()
         {
             return (pressedButton != null &&
