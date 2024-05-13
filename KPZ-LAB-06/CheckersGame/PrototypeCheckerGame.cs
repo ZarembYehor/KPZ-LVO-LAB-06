@@ -50,6 +50,44 @@ namespace CheckersGame
 
             Initialization();
         }
+
+        #region Callbacks
+        // Сhecker methods
+        private void ColorCB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox cb = sender as ComboBox;
+
+            Image selectedImage = GetSelectedImage(cb.SelectedItem.ToString());
+
+            if (selectedImage != null)
+            {
+                UpdateColorManager(cb, selectedImage);
+                UpdateButtonImages(cb);
+            }
+        }
+
+        // Handler of the event of pressing on the figure
+        public void OnFigurePress(object sender, EventArgs e)
+        {
+            if (prevButton != null)
+                prevButton.BackColor = GetPrevButtonColor(prevButton);
+
+            pressedButton = sender as Button;
+
+            if (IsValidPress())
+            {
+                HandleValidPress();
+            }
+            else
+            {
+                HandleInvalidPress();
+            }
+
+            prevButton = pressedButton;
+        }
+
+        #endregion
+
         public static Image GetThumbnailImage(string color, int checkSize)
         {
             Image image = null;
@@ -65,19 +103,7 @@ namespace CheckersGame
 
             return image;
         }
-        // Сhecker methods
-        private void ColorCB_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ComboBox cb = sender as ComboBox;
-
-            Image selectedImage = GetSelectedImage(cb.SelectedItem.ToString());
-
-            if (selectedImage != null)
-            {
-                UpdateColorManager(cb, selectedImage);
-                UpdateButtonImages(cb);
-            }
-        }
+        
         private Image GetSelectedImage(string color)
         {
             Dictionary<string, Bitmap> colorImages = new Dictionary<string, Bitmap>
@@ -226,20 +252,25 @@ namespace CheckersGame
             {
                 for (int j = 0; j < MapSize; j++)
                 {
-                    Button button = new Button();
-                    button.Location = new Point(j * CheckSize, i * CheckSize);
-                    button.Size = new Size(CheckSize, CheckSize);
-                    button.Click += new EventHandler(OnFigurePress);
-                    if (map[i, j] == 1)
-                        button.Image = UpFigure;
-                    else if (map[i, j] == 2) button.Image = DownFigure;
+                    var button = new Button()
+                    {
+                        Location = new Point(j * CheckSize, i * CheckSize),
+                        Size = new Size(CheckSize, CheckSize),
+                        ForeColor = Color.Red
+
+                    };
 
                     button.BackColor = GetPrevButtonColor(button);
-                    button.ForeColor = Color.Red;
+                    button.Click += OnFigurePress;
+
+                    if (map[i, j] == 1)
+                        button.Image = UpFigure;
+                    else if (map[i, j] == 2) 
+                        button.Image = DownFigure;
 
                     buttons[i, j] = button;
 
-                    this.Controls.Add(button);
+                    Controls.Add(button);
                 }
             }
         }
@@ -255,25 +286,7 @@ namespace CheckersGame
             CurrentPlayerLabel.Text = $"Now move Player {currentPlayer}";
         }
 
-        // Handler of the event of pressing on the figure
-        public void OnFigurePress(object sender, EventArgs e)
-        {
-            if (prevButton != null)
-                prevButton.BackColor = GetPrevButtonColor(prevButton);
-
-            pressedButton = sender as Button;
-
-            if (IsValidPress())
-            {
-                HandleValidPress();
-            }
-            else
-            {
-                HandleInvalidPress();
-            }
-
-            prevButton = pressedButton;
-        }
+        
         private bool IsValidPress()
         {
             return (pressedButton != null &&
@@ -587,14 +600,8 @@ namespace CheckersGame
             }
             return eatStep;
         }
-        public bool IsInsideBorders(int ti,int tj)
-        {
-            if(ti>=MapSize || tj >= MapSize || ti<0 || tj < 0)
-            {
-                return false;
-            }
-            return true;
-        }
+
+        public bool IsInsideBorders(int x, int y) => x >= 0 && x < MapSize && y >= 0 && y < MapSize;
 
         // Other activities
         public void ActivateAllButtons()
@@ -693,7 +700,6 @@ namespace CheckersGame
         private void ShowGameOverMessage(string message)
         {
             MessageBox.Show(message, "Win", MessageBoxButtons.OK);
-            return;
         }
     }
 }
