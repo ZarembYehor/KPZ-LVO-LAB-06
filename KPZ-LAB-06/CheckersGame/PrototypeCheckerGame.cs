@@ -693,7 +693,6 @@ namespace CheckersGame
         private void ShowGameOverMessage(string message)
         {
             MessageBox.Show(message, "Win", MessageBoxButtons.OK);
-            return;
         }
     }
 }
