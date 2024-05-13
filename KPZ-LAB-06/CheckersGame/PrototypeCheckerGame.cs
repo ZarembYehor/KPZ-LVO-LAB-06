@@ -596,7 +596,7 @@ namespace CheckersGame
             return eatStep;
         }
 
-        public bool IsInsideBorders(int x, int y) => x >= 0 && x <= MapSize && y >= 0 && y <= MapSize;
+        public bool IsInsideBorders(int x, int y) => x >= 0 && x < MapSize && y >= 0 && y < MapSize;
 
         // Other activities
         public void ActivateAllButtons()

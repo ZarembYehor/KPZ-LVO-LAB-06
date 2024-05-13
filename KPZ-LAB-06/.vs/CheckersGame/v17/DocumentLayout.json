@@ -1,17 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Projects\\KPZ-LVO-LAB-06\\KPZ-LAB-06\\",
+  "WorkspaceRootPath": "C:\\Users\\\u0421\u0432\u0454\u0442\u0430\\source\\github clones\\KPZ-LVO-LAB-06\\KPZ-LAB-06\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{70E86064-F4F6-433F-8BA1-2235A16D4834}|CheckersGame\\CheckersGame.csproj|d:\\projects\\kpz-lvo-lab-06\\kpz-lab-06\\checkersgame\\extensions\\buttonextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{70E86064-F4F6-433F-8BA1-2235A16D4834}|CheckersGame\\CheckersGame.csproj|solutionrelative:checkersgame\\extensions\\buttonextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{70E86064-F4F6-433F-8BA1-2235A16D4834}|CheckersGame\\CheckersGame.csproj|d:\\projects\\kpz-lvo-lab-06\\kpz-lab-06\\checkersgame\\prototypecheckergame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{70E86064-F4F6-433F-8BA1-2235A16D4834}|CheckersGame\\CheckersGame.csproj|C:\\Users\\\u0421\u0432\u0454\u0442\u0430\\source\\github clones\\KPZ-LVO-LAB-06\\KPZ-LAB-06\\checkersgame\\prototypecheckergame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{70E86064-F4F6-433F-8BA1-2235A16D4834}|CheckersGame\\CheckersGame.csproj|solutionrelative:checkersgame\\prototypecheckergame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|CheckersGame||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{70E86064-F4F6-433F-8BA1-2235A16D4834}|CheckersGame\\CheckersGame.csproj|c:\\users\\\u0441\u0432\u0454\u0442\u0430\\source\\github clones\\kpz-lvo-lab-06\\kpz-lab-06\\checkersgame\\properties\\resources.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}",
+      "RelativeMoniker": "D:0:0:{70E86064-F4F6-433F-8BA1-2235A16D4834}|CheckersGame\\CheckersGame.csproj|solutionrelative:checkersgame\\properties\\resources.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}"
     }
   ],
   "DocumentGroupContainers": [
@@ -25,45 +25,29 @@
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ButtonExtensions.cs",
-              "DocumentMoniker": "D:\\Projects\\KPZ-LVO-LAB-06\\KPZ-LAB-06\\CheckersGame\\Extensions\\ButtonExtensions.cs",
-              "RelativeDocumentMoniker": "CheckersGame\\Extensions\\ButtonExtensions.cs",
-              "ToolTip": "D:\\Projects\\KPZ-LVO-LAB-06\\KPZ-LAB-06\\CheckersGame\\Extensions\\ButtonExtensions.cs",
-              "RelativeToolTip": "CheckersGame\\Extensions\\ButtonExtensions.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAuwBIAAAAxAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-12T10:10:03.106Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CheckersGame",
-              "DocumentMoniker": "D:\\Projects\\KPZ-LVO-LAB-06\\KPZ-LAB-06\\CheckersGame\\CheckersGame.csproj",
-              "RelativeDocumentMoniker": "CheckersGame\\CheckersGame.csproj",
-              "ToolTip": "D:\\Projects\\KPZ-LVO-LAB-06\\KPZ-LAB-06\\CheckersGame\\CheckersGame.csproj",
-              "RelativeToolTip": "CheckersGame\\CheckersGame.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-05-05T20:31:16.864Z"
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "CheckersGame",
+              "DocumentMoniker": "C:\\Users\\\u0421\u0432\u0454\u0442\u0430\\source\\github clones\\KPZ-LVO-LAB-06\\KPZ-LAB-06\\CheckersGame\\CheckersGame.csproj",
+              "RelativeDocumentMoniker": "CheckersGame\\CheckersGame.csproj",
+              "ToolTip": "C:\\Users\\\u0421\u0432\u0454\u0442\u0430\\source\\github clones\\KPZ-LVO-LAB-06\\KPZ-LAB-06\\CheckersGame\\CheckersGame.csproj",
+              "RelativeToolTip": "CheckersGame\\CheckersGame.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-05-05T20:31:16.864Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "PrototypeCheckerGame.cs",
-              "DocumentMoniker": "D:\\Projects\\KPZ-LVO-LAB-06\\KPZ-LAB-06\\CheckersGame\\PrototypeCheckerGame.cs",
+              "DocumentMoniker": "C:\\Users\\\u0421\u0432\u0454\u0442\u0430\\source\\github clones\\KPZ-LVO-LAB-06\\KPZ-LAB-06\\CheckersGame\\PrototypeCheckerGame.cs",
               "RelativeDocumentMoniker": "CheckersGame\\PrototypeCheckerGame.cs",
-              "ToolTip": "D:\\Projects\\KPZ-LVO-LAB-06\\KPZ-LAB-06\\CheckersGame\\PrototypeCheckerGame.cs",
+              "ToolTip": "C:\\Users\\\u0421\u0432\u0454\u0442\u0430\\source\\github clones\\KPZ-LVO-LAB-06\\KPZ-LAB-06\\CheckersGame\\PrototypeCheckerGame.cs",
               "RelativeToolTip": "CheckersGame\\PrototypeCheckerGame.cs",
-              "ViewState": "AQIAAO8BAAAAAAAAAAAuwAYCAAA5AAAA",
+              "ViewState": "AQIAABsAAAAAAAAAAAAAACsAAAAwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-05T16:30:40.063Z",
               "EditorCaption": ""
@@ -76,11 +60,7 @@
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+              "Name": "ST:0:0:{68487888-204a-11d3-87eb-00c04f7971a5}"
             }
           ]
         }
