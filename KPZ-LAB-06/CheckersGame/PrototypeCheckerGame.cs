@@ -252,20 +252,25 @@ namespace CheckersGame
             {
                 for (int j = 0; j < MapSize; j++)
                 {
-                    Button button = new Button();
-                    button.Location = new Point(j * CheckSize, i * CheckSize);
-                    button.Size = new Size(CheckSize, CheckSize);
-                    button.Click += new EventHandler(OnFigurePress);
-                    if (map[i, j] == 1)
-                        button.Image = UpFigure;
-                    else if (map[i, j] == 2) button.Image = DownFigure;
+                    var button = new Button()
+                    {
+                        Location = new Point(j * CheckSize, i * CheckSize),
+                        Size = new Size(CheckSize, CheckSize),
+                        ForeColor = Color.Red
+
+                    };
 
                     button.BackColor = GetPrevButtonColor(button);
-                    button.ForeColor = Color.Red;
+                    button.Click += OnFigurePress;
+
+                    if (map[i, j] == 1)
+                        button.Image = UpFigure;
+                    else if (map[i, j] == 2) 
+                        button.Image = DownFigure;
 
                     buttons[i, j] = button;
 
-                    this.Controls.Add(button);
+                    Controls.Add(button);
                 }
             }
         }
