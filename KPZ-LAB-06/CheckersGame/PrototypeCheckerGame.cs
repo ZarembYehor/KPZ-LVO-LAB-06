@@ -90,33 +90,42 @@ namespace CheckersGame
 
         public static Image GetThumbnailImage(string color, int checkSize)
         {
-            Image image = null;
-
-            if (color.Equals("white", StringComparison.OrdinalIgnoreCase))
+            Dictionary<string, Image> colorImages = new Dictionary<string, Image>
             {
-                image = Properties.Resources.white.GetThumbnailImage(checkSize - 10, checkSize - 10, null, IntPtr.Zero);
-            }
-            else if (color.Equals("black", StringComparison.OrdinalIgnoreCase))
-            {
-                image = Properties.Resources.black.GetThumbnailImage(checkSize - 10, checkSize - 10, null, IntPtr.Zero);
-            }
+                { "white", Properties.Resources.white },
+                { "black", Properties.Resources.black }
+            };
 
-            return image;
+            string normalizedColor = color.ToLowerInvariant();
+
+            if (colorImages.ContainsKey(normalizedColor))
+            {
+                Image originalImage = colorImages[normalizedColor];
+
+                return originalImage.GetThumbnailImage(checkSize - 10, checkSize - 10, null, IntPtr.Zero);
+            }
+            else
+            {
+                return null;
+            }
         }
-        
+
         private Image GetSelectedImage(string color)
         {
             Dictionary<string, Bitmap> colorImages = new Dictionary<string, Bitmap>
-    {
-        { "White", Properties.Resources.white },
-        { "Black", Properties.Resources.black },
-        { "Blue", Properties.Resources.blue },
-        { "Yellow", Properties.Resources.yellow }
-    };
-
-            if (colorImages.ContainsKey(color))
             {
-                Bitmap selectedImage = colorImages[color];
+                { "white", Properties.Resources.white },
+                { "black", Properties.Resources.black },
+                { "blue", Properties.Resources.blue },
+                { "yellow", Properties.Resources.yellow }
+            };
+
+            string normalizedColor = color.ToLowerInvariant();
+
+            if (colorImages.ContainsKey(normalizedColor))
+            {
+                Bitmap selectedImage = colorImages[normalizedColor];
+
                 return selectedImage.GetThumbnailImage(CheckSize - 10, CheckSize - 10, null, IntPtr.Zero);
             }
             else
@@ -252,27 +261,47 @@ namespace CheckersGame
             {
                 for (int j = 0; j < MapSize; j++)
                 {
-                    var button = new Button()
-                    {
-                        Location = new Point(j * CheckSize, i * CheckSize),
-                        Size = new Size(CheckSize, CheckSize),
-                        ForeColor = Color.Red
-
-                    };
-
-                    button.BackColor = GetPrevButtonColor(button);
-                    button.Click += OnFigurePress;
-
-                    if (map[i, j] == 1)
-                        button.Image = UpFigure;
-                    else if (map[i, j] == 2) 
-                        button.Image = DownFigure;
-
+                    Button button = CreateButton(i, j);
+                    SetButtonImage(button, map[i, j]);
                     buttons[i, j] = button;
-
                     Controls.Add(button);
                 }
             }
+        }
+
+        private Button CreateButton(int row, int col)
+        {
+            var button = new Button()
+            {
+                Location = new Point(col * CheckSize, row * CheckSize),
+                Size = new Size(CheckSize, CheckSize),
+                ForeColor = Color.Red,
+                BackColor = GetPrevButtonColor(row, col)
+            };
+
+            button.Click += OnFigurePress;
+            return button;
+        }
+
+        private void SetButtonImage(Button button, int value)
+        {
+            switch (value)
+            {
+                case 1:
+                    button.Image = UpFigure;
+                    break;
+                case 2:
+                    button.Image = DownFigure;
+                    break;
+                default:
+                    button.Image = null;
+                    break;
+            }
+        }
+
+        private Color GetPrevButtonColor(int row, int col)
+        {
+            return (row + col) % 2 == 0 ? Color.White : Color.Black;
         }
         private void SwitchPlayer()
         {
@@ -299,10 +328,10 @@ namespace CheckersGame
             DeactivateAllButtons();
             pressedButton.Enabled = true;
             countEatSteps = 0;
-            if (pressedButton.Text == "👑")
-                ShowStepsWay(pressedButton.GetBoardY(), pressedButton.GetBoardX(), false);
-            else
-                ShowStepsWay(pressedButton.GetBoardY(), pressedButton.GetBoardX());
+
+            bool isKing = pressedButton.Text == "👑";
+
+            ShowStepsWay(pressedButton.GetBoardY(), pressedButton.GetBoardX(), !isKing);
 
             if (isMoving)
             {

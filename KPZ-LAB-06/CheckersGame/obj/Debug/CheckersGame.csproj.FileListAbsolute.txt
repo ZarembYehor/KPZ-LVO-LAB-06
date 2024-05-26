@@ -39,3 +39,14 @@ C:\Users\Свєта\source\github clones\KPZ-LVO-LAB-06\KPZ-LAB-06\CheckersGame\
 C:\Users\Свєта\source\github clones\KPZ-LVO-LAB-06\KPZ-LAB-06\CheckersGame\obj\Debug\CheckersGame.csproj.CoreCompileInputs.cache
 C:\Users\Свєта\source\github clones\KPZ-LVO-LAB-06\KPZ-LAB-06\CheckersGame\obj\Debug\CheckersGame.exe
 C:\Users\Свєта\source\github clones\KPZ-LVO-LAB-06\KPZ-LAB-06\CheckersGame\obj\Debug\CheckersGame.pdb
+D:\PullRequest3\KPZ-LVO-LAB-06\KPZ-LAB-06\CheckersGame\bin\Debug\CheckersGame.exe.config
+D:\PullRequest3\KPZ-LVO-LAB-06\KPZ-LAB-06\CheckersGame\bin\Debug\CheckersGame.exe
+D:\PullRequest3\KPZ-LVO-LAB-06\KPZ-LAB-06\CheckersGame\bin\Debug\CheckersGame.pdb
+D:\PullRequest3\KPZ-LVO-LAB-06\KPZ-LAB-06\CheckersGame\obj\Debug\CheckersGame.csproj.AssemblyReference.cache
+D:\PullRequest3\KPZ-LVO-LAB-06\KPZ-LAB-06\CheckersGame\obj\Debug\CheckersGame.csproj.SuggestedBindingRedirects.cache
+D:\PullRequest3\KPZ-LVO-LAB-06\KPZ-LAB-06\CheckersGame\obj\Debug\CheckersGame.PrototypeCheckerGame.resources
+D:\PullRequest3\KPZ-LVO-LAB-06\KPZ-LAB-06\CheckersGame\obj\Debug\CheckersGame.Properties.Resources.resources
+D:\PullRequest3\KPZ-LVO-LAB-06\KPZ-LAB-06\CheckersGame\obj\Debug\CheckersGame.csproj.GenerateResource.cache
+D:\PullRequest3\KPZ-LVO-LAB-06\KPZ-LAB-06\CheckersGame\obj\Debug\CheckersGame.csproj.CoreCompileInputs.cache
+D:\PullRequest3\KPZ-LVO-LAB-06\KPZ-LAB-06\CheckersGame\obj\Debug\CheckersGame.exe
+D:\PullRequest3\KPZ-LVO-LAB-06\KPZ-LAB-06\CheckersGame\obj\Debug\CheckersGame.pdb
